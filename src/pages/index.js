@@ -1,5 +1,6 @@
-import React from "react"
+import React, { useState } from "react";
 import { graphql, Link } from "gatsby"
+
 import Layout from "../components/layout"
 import SearchEngineOps from "../components/seo"
 import Img_IETUpview from "../assets/img/iet-upview.jpg"
@@ -7,7 +8,11 @@ import { RenderAuthors } from "../components/helper"
 import video from "../../static/home.mp4"
 import { SIGShowcase } from "../components/SIGShowcase"
 import ReactMarkdown from "react-markdown"
-// import
+
+
+
+
+
 
 function getRandom(arr, n) {
   var result = new Array(n),
@@ -24,11 +29,14 @@ function getRandom(arr, n) {
 }
 
 const MainPage = ({ location, data }) => {
+  const [showChatbot, toggleChatbot] = useState(true);
   return (
     <Layout location={location.pathname} title={"Main"}>
       <SearchEngineOps title="We are IET NITK" />
       <main className="page landing-page">
         <div className="video-overlay-wrap">
+          <div style = {{maxWidth: "300px"}}>
+          </div>
           <div
             id="video-overlay"
             style={{
@@ -54,7 +62,25 @@ const MainPage = ({ location, data }) => {
             Your browser does not support HTML video.
           </video>
         </div>
+        {/* <div className="app-chatbot-container">
+          <ConditionallyRender
+            ifTrue={showChatbot}
+            show={
+              <Chatbot
+                config={config}
+                messageParser={MessageParser}
+                actionProvider={ActionProvider}
+              />
+            }
+          />
+        </div>
 
+        <button
+          className="app-chatbot-button"
+          onClick={() => toggleChatbot((prev) => !prev)}
+        >
+          {/* <ButtonIcon className="app-chatbot-button-icon" /> */}
+        {/* </button> */} 
         <section className="clean-block about-us" id="about-us">
           <div className="container">
             <div className="block-heading mobile-marginx2">
